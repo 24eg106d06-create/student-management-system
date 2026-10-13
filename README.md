@@ -13,7 +13,7 @@ A Java full stack application for keeping student records in one place. The Spri
 
 ## Requirements
 
-- Java 21
+- Java 25 (latest LTS)
 - Maven 3.9+
 - Docker Desktop or a local MySQL 8 server
 
@@ -27,11 +27,16 @@ docker compose up -d mysql
 
 The default local credentials are `student_app` / `change-me`. To change them, copy `.env.example` to `.env` and update the values before starting the database. Set matching `DB_USERNAME` and `DB_PASSWORD` environment variables for Spring Boot as well. Keep `.env` out of version control.
 
-Start the application:
+Run Maven with Java 25. For a Homebrew installation on macOS:
 
 ```bash
+export JAVA_HOME="$(brew --prefix openjdk@25)/libexec/openjdk.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+mvn -version
 mvn spring-boot:run
 ```
+
+Confirm `mvn -version` reports Java 25; running with an older JDK (such as Java 21) causes a class-file version error.
 
 Open [http://localhost:8080](http://localhost:8080). To connect to a database with different settings, set `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, and optionally `SERVER_PORT` in the environment before starting Spring Boot.
 
